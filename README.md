@@ -42,3 +42,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - shadcn@2.7.0
 - npx shadcn@latest add --all
 - npm i @tiptap/react @tiptap/pm @tiptap/starter-kit
+- npm install @tiptap/extension-task-list @tiptap/extension-task-item
+- npm install @tiptap/extension-table @tiptap/extension-table-row @tiptap/extension-table-header @tiptap/extension-table-cell
+- npm install @tiptap/extension-image
+- npm install tiptap-extension-resize-image
