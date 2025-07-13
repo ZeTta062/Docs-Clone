@@ -1,14 +1,54 @@
 "use client"
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { type Level } from "@tiptap/extension-heading";
 import { useEditorStore } from "@/store/use-editor-store";
 import { type ColorResult, SketchPicker } from "react-color";
 
-import { BoldIcon, ChevronDownIcon, HighlighterIcon, ItalicIcon, ListTodoIcon, LucideIcon, MessageSquarePlusIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon } from "lucide-react";
+import { BoldIcon, ChevronDownIcon, HighlighterIcon, ItalicIcon, Link2Icon, ListTodoIcon, LucideIcon, MessageSquarePlusIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Separator } from "@radix-ui/react-separator";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
+
+/* Link Button */
+const LinkButton = () => {
+    const { editor } =useEditorStore();
+    const [ value, setValue ] = useState(editor?.getAttributes("link").href || "");
+
+    const onChange = (href: string) => {
+        editor?.chain().focus().extendMarkRange("link").setLink({ href }).run();
+        setValue("");
+    };
+
+    return (
+        <DropdownMenu onOpenChange={(open) => {
+            if (open) {
+                setValue(editor?.getAttributes("link").href || "")
+            }
+        }}>
+            <DropdownMenuTrigger asChild>
+                <button
+                    className= "h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm"
+                >
+                    <Link2Icon className="size-4" />
+                </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="p-2.5 flex items-center gap-x-2">
+                <Input 
+                    placeholder="https://example.com"
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                />
+                <Button onClick={() => onChange(value)}>
+                    확인
+                </Button>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+};
 
 /* Highlight Color */
 const HighlightColorButton = () => {
@@ -296,7 +336,7 @@ const Toolbar = () => {
             <HighlightColorButton />
             <Separator orientation="vertical" className="h-6 w-[2px] flex-shrink-0 bg-neutral-300" />
             
-            {/* Todo: Link */}
+            <LinkButton />
             {/* Todo: Image */}
             {/* Todo: Align */}
             {/* Todo: Line height */}

@@ -2,6 +2,7 @@
 
 import { useEditor, EditorContent} from '@tiptap/react'
 import { Underline } from '@tiptap/extension-underline'
+import Link from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
 import Table from '@tiptap/extension-table'
 import StarterKit from '@tiptap/starter-kit'
@@ -54,14 +55,19 @@ const Editor = () => {
             },
         },
         extensions: [
+            Link.configure({
+              openOnClick: false,
+              autolink: true,
+              defaultProtocol: "https"
+            }),
             TaskItem.configure({
                 nested: true,
             }),
-            Color,
-            TaskList,
             Highlight.configure({
               multicolor: true,
             }),
+            Color,
+            TaskList,
             TextStyle,
             Underline,
             StarterKit,
