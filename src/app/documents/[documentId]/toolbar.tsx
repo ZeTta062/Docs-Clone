@@ -6,12 +6,124 @@ import { type Level } from "@tiptap/extension-heading";
 import { useEditorStore } from "@/store/use-editor-store";
 import { type ColorResult, SketchPicker } from "react-color";
 
-import { BoldIcon, ChevronDownIcon, HighlighterIcon, ItalicIcon, Link2Icon, ListTodoIcon, LucideIcon, MessageSquarePlusIcon, PrinterIcon, Redo2Icon, RemoveFormattingIcon, SpellCheckIcon, UnderlineIcon, Undo2Icon } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Separator } from "@radix-ui/react-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@radix-ui/react-separator";
+import { 
+    Dialog, 
+    DialogFooter, 
+    DialogHeader, 
+    DialogContent, 
+    DialogTitle 
+} from "@/components/ui/dialog";
+import { 
+    DropdownMenu, 
+    DropdownMenuContent, 
+    DropdownMenuTrigger, 
+    DropdownMenuItem 
+} from "@/components/ui/dropdown-menu";
+import { 
+    BoldIcon, 
+    ChevronDownIcon, 
+    HighlighterIcon, 
+    ImageIcon, 
+    ItalicIcon, 
+    Link2Icon, 
+    ListTodoIcon, 
+    LucideIcon, 
+    MessageSquarePlusIcon, 
+    PrinterIcon, Redo2Icon, 
+    RemoveFormattingIcon, 
+    SearchIcon, 
+    SpellCheckIcon, 
+    UnderlineIcon, 
+    Undo2Icon, 
+    UploadIcon 
+} from "lucide-react";
 
+
+/* Image Button */
+const ImageButton = () => {
+    const { editor } =useEditorStore();
+
+    const [ imageUrl, setImageUrl ] = useState(editor?.getAttributes("link").href || "");
+    const [ isDialogOpen, setIsDialogOpen ] = useState(false);
+    const onChange = (src: string) => {
+        editor?.chain().focus().setImage({ src }).run();
+    };
+
+    const onUpload = () => {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+
+        input.onchange = (e) => {
+            const file = (e.target as HTMLInputElement).files?.[0];
+
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                onChange(imageUrl);
+            }
+        }
+
+        input.click();
+    };
+
+    const handleImageUrlSubmit = () => {
+        if (imageUrl) {
+            onChange(imageUrl);
+            setImageUrl("");
+            setIsDialogOpen(false);
+        }
+    };
+
+    return (
+        <>
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <button
+                        className= "h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm"
+                    >
+                        <ImageIcon className="size-4" />
+                    </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent >
+                    <DropdownMenuItem className="p-2.5 flex items-center gap-x-2" onClick={onUpload}>
+                        <UploadIcon className="size-4 mr-2" />
+                        업로드
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="p-2.5 flex items-center gap-x-2" onClick={() => setIsDialogOpen(true)}>
+                        <SearchIcon className="size-4 mr-2" />
+                        이미지 URL로 찾기
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>이미지 URL로 찾기</DialogTitle>
+                    </DialogHeader>
+                    <Input 
+                        placeholder="이미지 URP을 넣어주세요."
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                handleImageUrlSubmit();
+                            }
+                        }}
+                    />
+                    <DialogFooter>
+                        <Button onClick={handleImageUrlSubmit}>
+                            삽입
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+        </>
+    )
+};
 
 /* Link Button */
 const LinkButton = () => {
@@ -337,7 +449,7 @@ const Toolbar = () => {
             <Separator orientation="vertical" className="h-6 w-[2px] flex-shrink-0 bg-neutral-300" />
             
             <LinkButton />
-            {/* Todo: Image */}
+            <ImageButton />
             {/* Todo: Align */}
             {/* Todo: Line height */}
             {/* Todo: List */}
