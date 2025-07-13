@@ -1,19 +1,25 @@
 "use client";
 
 import { useEditor, EditorContent} from '@tiptap/react'
+import { Underline } from '@tiptap/extension-underline'
+import Image from '@tiptap/extension-image'
+import Table from '@tiptap/extension-table'
 import StarterKit from '@tiptap/starter-kit'
+import { Color } from '@tiptap/extension-color'
+import TableRow from '@tiptap/extension-table-row'
 import TaskItem from "@tiptap/extension-task-item"
 import TaskList from "@tiptap/extension-task-list"
-import Table from '@tiptap/extension-table'
+import Highlight from '@tiptap/extension-highlight'
 import TableCell from '@tiptap/extension-table-cell'
+import TextStyle from '@tiptap/extension-text-style'
+import FontFamily from '@tiptap/extension-font-family'
 import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-import Image from '@tiptap/extension-image'
 import { ImageResize } from "tiptap-extension-resize-image"
 
 import { useEditorStore } from '@/store/use-editor-store';
 
 const Editor = () => {
+  // 스토어에서 setEditor 액션을 가져옵니다.
   const { setEditor } = useEditorStore(); 
 
     const editor = useEditor({
@@ -51,12 +57,19 @@ const Editor = () => {
             TaskItem.configure({
                 nested: true,
             }),
+            Color,
             TaskList,
+            Highlight.configure({
+              multicolor: true,
+            }),
+            TextStyle,
+            Underline,
             StarterKit,
+            FontFamily,
             Table,
+            TableRow,
             TableCell,
             TableHeader,
-            TableRow,
             Image,
             ImageResize,
         ],

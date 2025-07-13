@@ -47,3 +47,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - npm install @tiptap/extension-image
 - npm install tiptap-extension-resize-image
 - npm install zustand
+- npm install @tiptap/extension-text-style @tiptap/extension-font-family
+- npm install react-color
+- npm i @tiptap/extension-color@2.23.1
+- npm i --save-dev @types/react-color
