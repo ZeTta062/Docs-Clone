@@ -12,6 +12,7 @@ import TaskItem from "@tiptap/extension-task-item"
 import TaskList from "@tiptap/extension-task-list"
 import Highlight from '@tiptap/extension-highlight'
 import TableCell from '@tiptap/extension-table-cell'
+import TextAlign from '@tiptap/extension-text-align'
 import TextStyle from '@tiptap/extension-text-style'
 import FontFamily from '@tiptap/extension-font-family'
 import TableHeader from '@tiptap/extension-table-header'
@@ -65,6 +66,9 @@ const Editor = () => {
             }),
             Highlight.configure({
               multicolor: true,
+            }),
+            TextAlign.configure({
+              types: ["heading", "paragraph"]
             }),
             Color,
             TaskList,

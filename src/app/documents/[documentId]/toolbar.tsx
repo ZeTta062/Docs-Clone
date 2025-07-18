@@ -23,6 +23,10 @@ import {
     DropdownMenuItem 
 } from "@/components/ui/dropdown-menu";
 import { 
+    AlignLeftIcon,
+    AlignRightIcon,
+    AlignCenterIcon,
+    AlignJustifyIcon,
     BoldIcon, 
     ChevronDownIcon, 
     HighlighterIcon, 
@@ -38,9 +42,112 @@ import {
     SpellCheckIcon, 
     UnderlineIcon, 
     Undo2Icon, 
-    UploadIcon 
+    UploadIcon, 
+    ListIcon,
+    ListOrderedIcon
 } from "lucide-react";
 
+/* List Button */
+const ListButton = () => {
+    const { editor } =useEditorStore();
+
+    const lists = [
+        {
+            label: "Bullet List",
+            icon: ListIcon,
+            isActive: () => editor?.isActive("bulletList"),
+            onClick: () => editor?.chain().focus().toggleBulletList().run(),
+        },
+        {
+            label: "Ordered List",
+            icon: ListOrderedIcon,
+            isActive: () => editor?.isActive("orderedList"),
+            onClick: () => editor?.chain().focus().toggleOrderedList().run(),
+        },
+    ]
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <button
+                    className= "h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm"
+                >
+                    <ListIcon className="size-4" />
+                </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+                {lists.map(({ label, icon: Icon, onClick, isActive }) => (
+                    <button
+                        key={label}
+                        onClick={onClick}
+                        className={cn(
+                            "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80",
+                            isActive() && "bg-neutral-200/80"
+                        )}
+                    >
+                        <Icon className="size-4" />
+                        <span className="text-sm">{label}</span>
+                    </button>
+                ))}
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
+
+/* Align Button */
+const AlignButton = () => {
+    const { editor } =useEditorStore();
+
+    const alignments = [
+        {
+            label: "왼쪽 맞춤",
+            value: "left",
+            icon: AlignLeftIcon,
+        },
+        {
+            label: "가운데 맞춤",
+            value: "center",
+            icon: AlignCenterIcon,
+        },
+        {
+            label: "오른쪽 맞춤",
+            value: "right",
+            icon: AlignRightIcon,
+        },
+        {
+            label: "양쪽 맞춤",
+            value: "justify",
+            icon: AlignJustifyIcon,
+        },
+    ]
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <button
+                    className= "h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm"
+                >
+                    <AlignLeftIcon className="size-4" />
+                </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="p-1 flex flex-col gap-y-1">
+                {alignments.map(({ label, value, icon: Icon }) => (
+                    <button
+                        key={value}
+                        onClick={() => editor?.chain().focus().setTextAlign(value).run()}
+                        className={cn(
+                            "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80",
+                            editor?.isActive({ TextAlign: value }) && "bg-neutral-200/80"
+                        )}
+                    >
+                        <Icon className="size-4" />
+                        <span className="text-sm">{label}</span>
+                    </button>
+                ))}
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
 
 /* Image Button */
 const ImageButton = () => {
@@ -450,9 +557,9 @@ const Toolbar = () => {
             
             <LinkButton />
             <ImageButton />
-            {/* Todo: Align */}
+            <AlignButton />
             {/* Todo: Line height */}
-            {/* Todo: List */}
+            <ListButton />
             {sections[2].map((item) => (
                 <ToolbarButton key={item.label} {...item} />
             ))}

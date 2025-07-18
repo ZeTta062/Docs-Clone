@@ -9,8 +9,8 @@ const Home = () => {
             <span className="text-blue-500 underline">
               &nbsp;here&nbsp;
             </span>
-            to go to document id
           </Link>
+          to go to document id
       </div>
     )
 }
