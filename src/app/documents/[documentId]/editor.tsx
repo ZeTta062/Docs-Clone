@@ -19,6 +19,7 @@ import TableHeader from '@tiptap/extension-table-header'
 import { ImageResize } from "tiptap-extension-resize-image"
 
 import { useEditorStore } from '@/store/use-editor-store';
+import { FontSizeExtension } from '@/extensions/font-size';
 
 const Editor = () => {
   // 스토어에서 setEditor 액션을 가져옵니다.
@@ -70,6 +71,7 @@ const Editor = () => {
             TextAlign.configure({
               types: ["heading", "paragraph"]
             }),
+            FontSizeExtension,
             Color,
             TaskList,
             TextStyle,
