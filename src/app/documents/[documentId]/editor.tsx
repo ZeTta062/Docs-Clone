@@ -20,6 +20,7 @@ import { ImageResize } from "tiptap-extension-resize-image"
 
 import { useEditorStore } from '@/store/use-editor-store';
 import { FontSizeExtension } from '@/extensions/font-size';
+import { LineHeightExtension } from '@/extensions/line-height';
 
 const Editor = () => {
   // 스토어에서 setEditor 액션을 가져옵니다.
@@ -70,6 +71,10 @@ const Editor = () => {
             }),
             TextAlign.configure({
               types: ["heading", "paragraph"]
+            }),
+            LineHeightExtension.configure({
+              types: ["heading", "paragraph"],
+              defaultLineHeight: "normal",
             }),
             FontSizeExtension,
             Color,
