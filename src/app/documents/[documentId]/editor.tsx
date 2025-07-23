@@ -1,5 +1,6 @@
 "use client";
 
+import Ruler from './ruler';
 import { useEditor, EditorContent} from '@tiptap/react'
 import { Underline } from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
@@ -27,6 +28,7 @@ const Editor = () => {
   const { setEditor } = useEditorStore(); 
 
     const editor = useEditor({
+      immediatelyRender: false,
       onCreate({ editor }) {
         setEditor(editor);
       },
@@ -111,6 +113,7 @@ const Editor = () => {
     return (
         <div className='size-full overflow-x-auto bg-[#f9fbfd] px-4 
         print:px-0 print:bg-white print:overflow-visible'>
+            <Ruler />
             <div className="min-w-max flex justify-center w-[816px] py-4 mx-auto 
             print:py-0 print:w-full print:min-w-0">
                 <EditorContent editor={editor} />

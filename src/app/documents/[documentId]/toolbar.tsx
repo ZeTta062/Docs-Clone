@@ -530,6 +530,8 @@ const FontFamilyButton = () => {
         { label: "serif", value: "serif"},
         { label: "Verdana", value: "Verdana" },
         { label: "Georgia", value: "Georgia" },
+        { label: "Comic Sans MS", value: "Comic Sans MS" },
+        { label: "Noto Sans KR", value: "Noto Sans KR" },
     ];
 
     return (
@@ -539,7 +541,7 @@ const FontFamilyButton = () => {
                     className= "h-7 w-[120px] shrink-0 flex items-center justify-between rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm"
                 >
                     <span className="truncate">
-                        {editor?.getAttributes("textStyle").fontFamily || "serif"}
+                        {editor?.getAttributes("textStyle").fontFamily || "Arial"}
                     </span>
                     <ChevronDownIcon className="ml-2 size-4 shrink-0" />
                 </button>
