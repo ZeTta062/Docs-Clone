@@ -54,3 +54,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - npm install @tiptap/extension-link@2.23.1
 - npm i @tiptap/extension-text-align@2.23.1
 - npm install react-icons
+- npm install nuqs
