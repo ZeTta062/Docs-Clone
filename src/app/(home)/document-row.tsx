@@ -19,7 +19,7 @@ const DocumentRow = ({ document}: DocumentRowProps) => {
     return (
         <TableRow
             onClick={() => router.push(`/documents/${document._id}`)}
-            className="cursor-pointer"
+            className="cursor-pointer hover:bg-blue-200/50"
         >
             <TableCell className="w-[50px]">
                 <SiGoogledocs className="size-6 fill-blue-500" />

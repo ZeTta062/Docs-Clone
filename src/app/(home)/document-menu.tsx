@@ -22,7 +22,7 @@ const DocumentMenu = ({ documentId, title, onNewTab }: DocumentMenuProps) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild >
-                <Button variant={"ghost"} size={"icon"} className="rounded-full">
+                <Button variant={"ghost"} size={"icon"} className="rounded-full cursor-pointer">
                     <MoreVerticalIcon className="size-4" />
                 </Button>
             </DropdownMenuTrigger>

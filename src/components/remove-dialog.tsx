@@ -27,7 +27,7 @@ const RemoveDialog = ({
             <AlertDialogContent onClick={(e) => e.stopPropagation()}>
                 <AlertDialogHeader>
                     <AlertDialogTitle>
-                        정말로 해당 문서를 삭제하겠습니까?
+                        해당 문서를 삭제하겠습니까?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                         삭제후에는 되돌릴 수 없으며, 문서는 완전히 삭제됩니다.
@@ -38,6 +38,7 @@ const RemoveDialog = ({
                         </AlertDialogCancel>
                         <AlertDialogAction
                             disabled={isRemoving}
+                            className="bg-red-500 hover:bg-red-400"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setIsRemoving(true);

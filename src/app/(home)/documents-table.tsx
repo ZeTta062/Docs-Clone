@@ -56,6 +56,7 @@ const DocumentsTable = ({
                     size={"sm"} 
                     onClick={() => loadMore(5)}
                     disabled={status !== "CanLoadMore"}
+                    className="cursor-pointer"
                 >
                     {status === "CanLoadMore" ? "더보기" : "페이지의 마지막 부분입니다."}
                 </Button>

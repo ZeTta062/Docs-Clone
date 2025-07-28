@@ -3,11 +3,17 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 
 import { cn } from "@/lib/utils"
 import { api } from "../../../convex/_generated/api";
 import { templates } from "@/constants/templates";
+import { 
+    Carousel, 
+    CarouselContent, 
+    CarouselItem, 
+    CarouselNext, 
+    CarouselPrevious 
+} from "@/components/ui/carousel"
 
 const TemplateGallery = () => {
     const router = useRouter();
@@ -27,7 +33,7 @@ const TemplateGallery = () => {
 
     return (
         <div className="bg-[#f1f3f4]">
-            <div className="max-w-screen mx-auto px-16 py-6 flex flex-col gap-y-4">
+            <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-y-4">
                 <h3 className="font-medium">새 문서 시작</h3>
                 <Carousel>
                     <CarouselContent className="-ml-4">
