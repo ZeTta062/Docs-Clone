@@ -1,5 +1,6 @@
 "use client"
 
+import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
@@ -23,7 +24,9 @@ const TemplateGallery = () => {
     const onTemplateClick = (title:string, initialContent: string) => {
         setIsCreating(true);
         create ({ title, initialContent })
+            .catch(() => toast.error(("문제가 발생했습니다.")))
             .then((documentId) => {
+                toast.success("문서가 생성되었습니다.")
                 router.push(`/documents/${documentId}`);
             })
             .finally(() => {

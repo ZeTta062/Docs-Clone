@@ -1,5 +1,6 @@
 "use client"
 
+import { toast } from "sonner";
 import { useMutation } from "convex/react";
 import { Id } from "../../convex/_generated/dataModel"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
@@ -43,6 +44,8 @@ const RemoveDialog = ({
                                 e.stopPropagation();
                                 setIsRemoving(true);
                                 remove({ id: documentId })
+                                    .catch(() => toast.error(("문제가 발생했습니다.")))
+                                    .then(() => toast.success("문서가 제거되었습니다."))
                                     .finally(() => setIsRemoving(false))
                             }}
                         >

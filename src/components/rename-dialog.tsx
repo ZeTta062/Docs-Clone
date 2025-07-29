@@ -1,5 +1,6 @@
 "use client"
 
+import { toast } from "sonner";
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -40,6 +41,8 @@ const RenameDialog = ({
         setIsUpdating(true);
 
         update({ id: documentId, title: title.trim() || "제목 없는 문서" })
+            .catch(() => toast.error(("문제가 발생했습니다.")))
+            .then(() => toast.success("문서의 이름이 변경되었습니다."))
             .finally(() => {
                 setIsUpdating(false);
                 setOpen(false);
