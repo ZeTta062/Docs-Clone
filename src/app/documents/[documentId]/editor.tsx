@@ -19,11 +19,14 @@ import FontFamily from '@tiptap/extension-font-family'
 import TableHeader from '@tiptap/extension-table-header'
 import { ImageResize } from "tiptap-extension-resize-image"
 
+import { Threads } from './threads';
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import { useEditorStore } from '@/store/use-editor-store';
 import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
 
 const Editor = () => {
+  const liveblocks = useLiveblocksExtension();
   // 스토어에서 setEditor 액션을 가져옵니다.
   const { setEditor } = useEditorStore(); 
 
@@ -83,7 +86,6 @@ const Editor = () => {
             TaskList,
             TextStyle,
             Underline,
-            StarterKit,
             FontFamily,
             Table,
             TableRow,
@@ -91,6 +93,11 @@ const Editor = () => {
             TableHeader,
             Image,
             ImageResize,
+            liveblocks,
+            StarterKit.configure({
+              // The Liveblocks extension comes with its own history handling
+              history: false,
+            }),
         ],
     })
 
@@ -101,6 +108,7 @@ const Editor = () => {
             <div className="min-w-max flex justify-center w-[816px] py-4 mx-auto 
             print:py-0 print:w-full print:min-w-0">
                 <EditorContent editor={editor} />
+                <Threads editor={editor} />
             </div>
         </div>
     );

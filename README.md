@@ -58,3 +58,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - npm i convex
 - npx convex dev
 - npm install @clerk/nextjs
+- npm install @liveblocks/client @liveblocks/react @liveblocks/react-ui @liveblocks/react-tiptap
+- npm i @tiptap/extension-collaboration@2.23.1
+- npm i @tiptap/extension-collaboration-cursor@2.23.1
+- npm i y-protocols
