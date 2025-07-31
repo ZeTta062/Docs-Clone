@@ -38,8 +38,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Use Stack
 
-- nextjs@15.3.4
-- shadcn@2.7.0
+- npm i nextjs@15.3.4
+- npx shadcn@2.7.0 init
 - npx shadcn@latest add --all
 - npm i @tiptap/react @tiptap/pm @tiptap/starter-kit
 - npm install @tiptap/extension-task-list @tiptap/extension-task-item
@@ -62,3 +62,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - npm i @tiptap/extension-collaboration@2.23.1
 - npm i @tiptap/extension-collaboration-cursor@2.23.1
 - npm i y-protocols
+- npm i @liveblocks/node@3.2.1

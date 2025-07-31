@@ -29,7 +29,7 @@ const DocumentsTable = ({
                         <TableRow className="hover:bg-transparent border-none">
                             <TableHead>이름</TableHead>
                             <TableHead>&nbsp;</TableHead>
-                            <TableHead className="hidden md:table-cell">Shared</TableHead>
+                            <TableHead className="hidden md:table-cell">공유 문서</TableHead>
                             <TableHead className="hidden md:table-cell">생성 날짜</TableHead>
                         </TableRow>
                     </TableHeader>

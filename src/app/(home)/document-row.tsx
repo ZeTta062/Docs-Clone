@@ -33,8 +33,8 @@ const DocumentRow = ({ document}: DocumentRowProps) => {
                     : <CircleUserIcon className="size-4" />
                 }
                 {document.organizationId 
-                    ? "Organization"
-                    : "Personal"
+                    ? "조직 문서"
+                    : "내 문서"
                 }
             </TableCell>
             <TableCell className="text-muted-foreground hidden md:table-cell">

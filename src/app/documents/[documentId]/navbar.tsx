@@ -38,6 +38,7 @@ import {
     MenubarSeparator, 
     MenubarShortcut 
 } from "@/components/ui/menubar";
+import Avatars from "./avatars";
 
 const Navbar = () => {
     const { editor } = useEditorStore();
@@ -252,6 +253,7 @@ const Navbar = () => {
                 
             </div>
             <div className="flex gap-3 items-center pl-6">
+                <Avatars />
                 <OrganizationSwitcher
                     afterCreateOrganizationUrl="/"
                     afterLeaveOrganizationUrl="/"
