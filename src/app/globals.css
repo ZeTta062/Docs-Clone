@@ -323,3 +323,11 @@
     display: none;
   }
 }
+
+/* div[data-radix-popper-content-wrapper] {
+  z-index: 50 !important;
+} */
+
+div[data-radix-menu-content] {
+  z-index: 52 !important;
+}
