@@ -1,31 +1,34 @@
 "use client";
 
 import Ruler from './ruler';
-import { useEditor, EditorContent} from '@tiptap/react'
-import { Underline } from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
-import Image from '@tiptap/extension-image'
-import Table from '@tiptap/extension-table'
 import StarterKit from '@tiptap/starter-kit'
+import Table from '@tiptap/extension-table'
+import Image from '@tiptap/extension-image'
 import { Color } from '@tiptap/extension-color'
-import TableRow from '@tiptap/extension-table-row'
-import TaskItem from "@tiptap/extension-task-item"
 import TaskList from "@tiptap/extension-task-list"
+import TextStyle from '@tiptap/extension-text-style'
+import TaskItem from "@tiptap/extension-task-item"
 import Highlight from '@tiptap/extension-highlight'
 import TableCell from '@tiptap/extension-table-cell'
 import TextAlign from '@tiptap/extension-text-align'
-import TextStyle from '@tiptap/extension-text-style'
+import TableRow from '@tiptap/extension-table-row'
+import { useEditor, EditorContent} from '@tiptap/react'
 import FontFamily from '@tiptap/extension-font-family'
+import { Underline } from '@tiptap/extension-underline'
 import TableHeader from '@tiptap/extension-table-header'
 import { ImageResize } from "tiptap-extension-resize-image"
+import { useStorage } from '@liveblocks/react';
 
 import { Threads } from './threads';
-import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import { useEditorStore } from '@/store/use-editor-store';
 import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
+import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tiptap";
 
 const Editor = () => {
+  const leftMargin = useStorage((root) => root.leftMargin);
+  const rightMargin = useStorage((root) => root.rightMargin);
   const liveblocks = useLiveblocksExtension();
   // 스토어에서 setEditor 액션을 가져옵니다.
   const { setEditor } = useEditorStore(); 
@@ -58,7 +61,7 @@ const Editor = () => {
       },
         editorProps: {
             attributes: {
-                style: "padding-left:56px; padding-right:56px;",
+                style: `padding-left: ${leftMargin ?? 56}px; padding-right: ${rightMargin ?? 56}px;`,
                 class: "focus:outline-none print:border-0 bg-white border border-[#c7c7c7] flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
             },
         },

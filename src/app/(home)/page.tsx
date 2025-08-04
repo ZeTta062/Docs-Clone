@@ -11,8 +11,7 @@ import { useSearchParam } from "@/hooks/use-search-param";
 
 const Home = () => {
   const [search] = useSearchParam();
-
-  const { 
+  const {
     results, 
     status, 
     loadMore

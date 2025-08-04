@@ -24,9 +24,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <head>
-        <link rel="icon" href="docs-logo.svg" type="image/svg" />
-      </head>
       <body className={inter.className} >
         <NuqsAdapter>
           <ConvexClientProvider>

@@ -79,8 +79,11 @@ export function Room({ children }: { children: ReactNode }) {
                 }));
             }}
         >
-            <RoomProvider id={params.documentId as string}>
-                <ClientSideSuspense fallback={<FullscreenLoader label="문서를 로딩하는 중입니다..." />}>
+            <RoomProvider 
+                id={params.documentId as string}
+                initialStorage={{ leftMargin: 56, rightMargin: 56 }}
+            >
+                <ClientSideSuspense fallback={<FullscreenLoader label="방을 불러오는 중입니다..." />}>
                     {children}
                 </ClientSideSuspense>
             </RoomProvider>
