@@ -17,6 +17,7 @@ export async function getUsers() {
     const clerk = await clerkClient();
 
     const response = await clerk.users.getUserList({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         organizationId: [(sessionClaims as any)?.o?.id],
     });
 
@@ -24,6 +25,7 @@ export async function getUsers() {
         id: user.id,
         name: user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "익명사용자",
         avatar: user.imageUrl,
+        color: "",
     }));
 
     return users;

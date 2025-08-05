@@ -23,7 +23,6 @@ const DocumentInput = ({
     const status = useStatus();
 
     const [ value, setValue ] = useState(title);
-    const [ isError, setIsError ] = useState(false);
     const [ isPending, setIsPending ] = useState(false);
     const [ isEditing, setIsEditing ] = useState(false);
 
@@ -91,7 +90,7 @@ const DocumentInput = ({
                     {title}
                 </span>
             )}
-            {isError && <BsCloudSlash className='size-4' />}
+            {showError && <BsCloudSlash className='size-4' />}
             {!showError && !showLoader && <BsCloudCheck />}
             {showLoader && <Loader2Icon className='size-4 animate-spin text-muted-foreground' />}
         </div>
