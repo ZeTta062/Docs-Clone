@@ -15,6 +15,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Docs Clone",
   description: "Docs를 클론 코딩한 작업물입니다.",
+  icons: {
+    icon: "/docs-logo.svg",
+  }
 };
 
 export default function RootLayout({
